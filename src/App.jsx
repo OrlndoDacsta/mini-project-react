@@ -1,12 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import Login from "./pages/Login";
 const App = () => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-center">Hello World!</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 export default App;
