@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-const Login = () => {
+
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
@@ -23,29 +24,38 @@ const Login = () => {
     };
 
     axios
-      .post("https://reqres.in/api/login", payload)
+      .post("https://reqres.in/api/register", payload)
       .then((res) => {
-        // console.log(res.data.token);
+        console.log(res.data.token);
         setToken(res.data.token);
       })
       .catch((err) => {
-        // console.log(err.response);
+        console.log(err.response);
         setError(err.response.data.error);
       });
   };
 
   return (
     <div>
-      {token && <h1>Login Success</h1>}
-      {error && <h1>{error}</h1>}
-
-      <div>
-        <input onChange={handleEmailChange} placeholder="Email" />
-        <input onChange={handlePasswordChange} placeholder="Password" />
-        <button onClick={handleSubmit}>Login</button>
-      </div>
+      <h1>Register</h1>
+      <label htmlFor="email">Email</label>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={handleEmailChange}
+      />
+      <label htmlFor="password">Password</label>
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={handlePasswordChange}
+      />
+      <button onClick={handleSubmit}>Register</button>
+      {token && <p>Registered successfully!</p>}
+      {error && <p>{error}</p>}
     </div>
   );
 };
-
-export default Login;
+export default Register;
