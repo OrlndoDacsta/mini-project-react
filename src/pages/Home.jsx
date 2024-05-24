@@ -59,11 +59,11 @@ const Home = () => {
         } bg-emerald-900`}
       >
         <div className="flex items-start gap-[20px] p-4">
-          <div className="bg-gradient-to-r from-sky-400 to-sky-600 text-emerald-200 rounded-lg p-[4px] items-center transition-all duration-300 w-[40px] h-[40px]">
+          <div className="bg-gradient-to-r from-emerald-400 to-emerald-600 text-emerald-200 rounded-lg p-[4px] items-center transition-all duration-300 w-[40px] h-[40px]">
             <PiSpinnerBallFill className="text-[34px] animate-spin" />{" "}
           </div>
           {!click && (
-            <p className="text-blue-600 text-[24px] font-semibold">
+            <p className="text-white text-[24px] font-semibold">
               Dashboard
             </p>
           )}
@@ -74,8 +74,13 @@ const Home = () => {
               className="flex items-center transition-all duration-300 gap-x-2"
               key={item.id}
             >
-              <span title={item.title}>{item.icon}</span>
-              {!click && item.title}
+              <Link
+                to={item.link}
+                className="flex items-center gap-x-2"
+              >
+                {item.icon}
+                {!click && <p className="font-semibold text-white">{item.title}</p>} 
+              </Link>
             </li>
           ))}
         </ul>
@@ -91,7 +96,7 @@ const Home = () => {
       </button>
 
       <div className="m-auto">
-        <h1 className="p-4 text-3xl font-bold text-center">List Users</h1>
+        <h1 className="p-4 text-3xl font-bold text-center text-emerald-900">List Users</h1>
         <table className="bg-emerald-900 w-[700px] text-white shadow-lg">
           <thead className="text-center">
             <tr>
