@@ -5,7 +5,9 @@ import mail from "../assets/icons/mailLogin.svg";
 import lock from "../assets/icons/lockLogin.svg";
 import loginImg from "../assets/images/login.png";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
@@ -36,6 +38,10 @@ const Login = () => {
       .then((res) => {
         // console.log(res.data.token);
         setToken(res.data.token);
+        
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       })
       .catch((err) => {
         // console.log(err.response);

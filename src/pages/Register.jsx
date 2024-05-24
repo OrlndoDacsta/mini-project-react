@@ -5,8 +5,10 @@ import mail from "../assets/icons/mailLogin.svg";
 import lock from "../assets/icons/lockLogin.svg";
 import registerImg from "../assets/images/register.png";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
@@ -37,6 +39,10 @@ const Register = () => {
       .then((res) => {
         console.log(res.data.token);
         setToken(res.data.token);
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
       })
       .catch((err) => {
         console.log(err.response);
