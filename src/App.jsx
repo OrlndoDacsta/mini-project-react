@@ -5,16 +5,11 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import User from "./pages/User";
+import { useRoutes } from "react-router-dom";
+import routeList from "./routes/routeList";
+
 const App = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/user" element={<User />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  const element = useRoutes(routeList);
+  return element;
 };
 export default App;

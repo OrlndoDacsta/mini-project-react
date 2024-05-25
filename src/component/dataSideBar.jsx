@@ -1,6 +1,6 @@
 import { FaUser } from "react-icons/fa";
 import { FaUserFriends } from "react-icons/fa";
-import { GrLogout } from "react-icons/gr";
+import { useNavigate } from "react-router-dom";
 
 const navItem = [
   {
@@ -16,13 +16,7 @@ const navItem = [
     title: "Profile",
     link: "/user",
   },
-
-  {
-    id: 3,
-    icon: <GrLogout className="text-xl text-white" />,
-    title: "Logout",
-    link: "/login",
-  },
+      
 ];
 
 export default navItem;

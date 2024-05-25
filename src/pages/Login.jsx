@@ -38,7 +38,9 @@ const Login = () => {
       .then((res) => {
         // console.log(res.data.token);
         setToken(res.data.token);
-        
+
+        localStorage.setItem("access_token", res.data.token);
+
         setTimeout(() => {
           navigate("/");
         }, 2000);
@@ -121,9 +123,7 @@ const Login = () => {
                   </svg>
                   <span class="sr-only">Error icon</span>
                 </div>
-                <div class="ms-3 text-sm font-normal">
-                  {error}
-                </div>
+                <div class="ms-3 text-sm font-normal">{error}</div>
                 <button
                   onClick={handleClose}
                   type="button"

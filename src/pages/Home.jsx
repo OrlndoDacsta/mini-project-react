@@ -5,8 +5,10 @@ import { useState, useEffect } from "react";
 import dataSideBar from "../component/dataSideBar";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [click, setClick] = useState(false);
   const [listUsers, setListUsers] = useState([]);
   const [pagination, setPagination] = useState({
@@ -51,6 +53,12 @@ const Home = () => {
     setPagination({ ...pagination, page: pagination.page - 1 });
   };
 
+  const handleLogout = () => {
+    setTimeout(() => {
+      navigate("/login");
+    }, 1000);
+  };
+
   return (
     <div className="flex items-start">
       <div
@@ -63,9 +71,7 @@ const Home = () => {
             <PiSpinnerBallFill className="text-[34px] animate-spin" />{" "}
           </div>
           {!click && (
-            <p className="text-white text-[24px] font-semibold">
-              Dashboard
-            </p>
+            <p className="text-white text-[24px] font-semibold">Dashboard</p>
           )}
         </div>
         <ul className="flex flex-col p-4 mt-10 gap-14">
@@ -74,15 +80,21 @@ const Home = () => {
               className="flex items-center transition-all duration-300 gap-x-2"
               key={item.id}
             >
-              <Link
-                to={item.link}
-                className="flex items-center gap-x-2"
-              >
+              <Link to={item.link} className="flex items-center gap-x-2">
                 {item.icon}
-                {!click && <p className="font-semibold text-white">{item.title}</p>} 
+                {!click && (
+                  <p className="font-semibold text-white">{item.title}</p>
+                )}
               </Link>
             </li>
           ))}
+
+          <button
+            onClick={handleLogout}
+            className="p-2 text-white transition-all duration-300 rounded-full shadow-lg bg-emerald-500"
+          >
+            Logout
+          </button>
         </ul>
       </div>
 
@@ -96,7 +108,9 @@ const Home = () => {
       </button>
 
       <div className="m-auto">
-        <h1 className="p-4 text-3xl font-bold text-center text-emerald-900">List Users</h1>
+        <h1 className="p-4 text-3xl font-bold text-center text-emerald-900">
+          List Users
+        </h1>
         <table className="bg-emerald-900 w-[700px] text-white shadow-lg">
           <thead className="text-center">
             <tr>
