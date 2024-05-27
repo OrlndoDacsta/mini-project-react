@@ -6,6 +6,7 @@ import dataSideBar from "../component/dataSideBar";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { GrLogout } from "react-icons/gr";
 
 const User = () => {
   const navigate = useNavigate();
@@ -62,12 +63,23 @@ const User = () => {
               </Link>
             </li>
           ))}
-          <button
-            onClick={handleLogout}
-            className="p-2 text-white transition-all duration-300 rounded-full shadow-lg bg-emerald-500"
-          >
-            Logout
-          </button>
+          {!click && (
+            <button
+              onClick={handleLogout}
+              className="p-2 text-white transition-all duration-300 rounded-full shadow-lg bg-emerald-500"
+            >
+              Logout
+            </button>
+          )}
+
+          {click && (
+            <button
+              onClick={handleLogout}
+              className="p-2 text-white transition-all duration-300"
+            >
+              <GrLogout />
+            </button>
+          )}
         </ul>
       </div>
 

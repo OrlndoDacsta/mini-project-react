@@ -9,6 +9,9 @@ export default {
       spacing: {
         '110': '700px',
       },
+      backgroundImage: {
+        'bg': "url('./src/assets/images/bg.jpg')",
+      }
     },
   },
   plugins: [],

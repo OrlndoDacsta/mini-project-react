@@ -6,6 +6,7 @@ import dataSideBar from "../component/dataSideBar";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { GrLogout } from "react-icons/gr";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Home = () => {
 
   const getUsers = () => {
     axios
-      .get(`https://reqres.in/api/users?per_page=4&page=${pagination.page}`)
+      .get(`https://reqres.in/api/users?per_page=6&page=${pagination.page}`)
       .then((res) => {
         console.log(res);
         const response = res.data.data;
@@ -62,7 +63,7 @@ const Home = () => {
   return (
     <div className="flex items-start">
       <div
-        className={`h-screen w-64 shadow-2xl text-gray-400 text-[18px] transition-all duration-300 ${
+        className={`h-[652px] w-64 shadow-2xl text-gray-400 text-[18px] transition-all duration-300 ${
           click && "w-[50px]"
         } bg-emerald-900`}
       >
@@ -71,7 +72,7 @@ const Home = () => {
             <PiSpinnerBallFill className="text-[34px] animate-spin" />{" "}
           </div>
           {!click && (
-            <p className="text-white text-[24px] font-semibold">Dashboard</p>
+            <p className="text-white text-[24px]">Dashboard</p>
           )}
         </div>
         <ul className="flex flex-col p-4 mt-10 gap-14">
@@ -83,18 +84,28 @@ const Home = () => {
               <Link to={item.link} className="flex items-center gap-x-2">
                 {item.icon}
                 {!click && (
-                  <p className="font-semibold text-white">{item.title}</p>
+                  <p className="text-white ">{item.title}</p>
                 )}
               </Link>
             </li>
           ))}
+          {!click && (
+            <button
+              onClick={handleLogout}
+              className="p-2 text-white transition-all duration-300 rounded-full shadow-lg bg-emerald-500 hover:text-black"
+            >
+              Logout
+            </button>
+          )}
 
-          <button
-            onClick={handleLogout}
-            className="p-2 text-white transition-all duration-300 rounded-full shadow-lg bg-emerald-500"
-          >
-            Logout
-          </button>
+          {click && (
+            <button
+              onClick={handleLogout}
+              className="p-2 text-white transition-all duration-300"
+            >
+              <GrLogout />
+            </button>
+          )}
         </ul>
       </div>
 
@@ -107,41 +118,38 @@ const Home = () => {
         <IoMdArrowDroprightCircle className="text-xl" />
       </button>
 
-      <div className="m-auto">
-        <h1 className="p-4 text-3xl font-bold text-center text-emerald-900">
+      <div className="w-screen bg-no-repeat bg-cover bg-bg">
+        <h1 className="p-4 text-3xl text-center text-white">
           List Users
         </h1>
-        <table className="bg-emerald-900 w-[700px] text-white shadow-lg">
-          <thead className="text-center">
-            <tr>
-              <th className="p-5 border-2">ID</th>
-              <th className="p-5 border-2">Avatar</th>
-              <th className="p-5 border-2">EMAIL</th>
-              <th className="p-5 border-2">FIRST NAME</th>
-              <th className="p-5 border-2">LAST NAME</th>
-            </tr>
-          </thead>
 
-          <tbody>
-            {listUsers.map((item) => (
-              <tr key={item.id}>
-                <td className="p-5 border-2">{item.id}</td>
-                <td className="p-5 border-2">
-                  <img
-                    src={item.avatar}
-                    alt={item.first_name}
-                    className="w-[50px] h-[50px] rounded-full"
-                  />
-                </td>
-                <td className="p-5 border-2">{item.email}</td>
-                <td className="p-5 border-2">{item.first_name}</td>
-                <td className="p-5 border-2">{item.last_name}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="grid grid-cols-3 gap-3 p-3">
+          {listUsers.map((item) => (
+            <div
+              key={item.id}
+              className="flex flex-col w-4/5 p-4 mx-auto bg-gray-400 border border-gray-100 shadow-2xl rounded-xl backdrop-filter backdrop-blur-md bg-opacity-10"
+            >
+              <img
+                src={item.avatar}
+                alt={item.first_name}
+                className="self-center w-24 h-24 rounded-full"
+              />
+              <p className="text-xl font-bold text-center">
+                {item.first_name} {item.last_name}
+              </p>
+              <p className="font-semibold text-center">ID: {item.id}</p>
+              <p className="text-sm font-semibold">
+                First Name: {item.first_name}
+              </p>
+              <p className="text-sm font-semibold">
+                Last Name: {item.last_name}
+              </p>
+              <p className="text-sm font-semibold">Email: {item.email}</p>
+            </div>
+          ))}
+        </div>
 
-        <ul className="flex justify-center mt-4">
+        <ul className="flex justify-center p-4">
           <li>
             <button
               className="px-3 py-1 mr-2 text-white bg-emerald-900 rounded-xl"
