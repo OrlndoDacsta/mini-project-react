@@ -4,6 +4,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import User from "../pages/User";
 import ProtectedRoute from "./ProtectedRoute";
+import DetailUser from "../pages/DetailUser";
 
 const routeList = [
   {
@@ -25,6 +26,10 @@ const routeList = [
   {
     path: "/user",
     element: <User />,
+  },
+  {
+    path: "/users/:id",
+    element: <DetailUser />,
   },
 ];
 

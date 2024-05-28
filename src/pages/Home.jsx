@@ -20,7 +20,7 @@ const Home = () => {
     axios
       .get(`https://reqres.in/api/users?per_page=6&page=${pagination.page}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         const response = res.data.data;
         setListUsers(response);
 
@@ -54,7 +54,9 @@ const Home = () => {
     setPagination({ ...pagination, page: pagination.page - 1 });
   };
 
+  const token = localStorage.getItem("access_token");
   const handleLogout = () => {
+    localStorage.removeItem("access_token");
     setTimeout(() => {
       navigate("/login");
     }, 1000);
@@ -71,9 +73,7 @@ const Home = () => {
           <div className="bg-gradient-to-r from-emerald-400 to-emerald-600 text-emerald-200 rounded-lg p-[4px] items-center transition-all duration-300 w-[40px] h-[40px]">
             <PiSpinnerBallFill className="text-[34px] animate-spin" />{" "}
           </div>
-          {!click && (
-            <p className="text-white text-[24px]">Dashboard</p>
-          )}
+          {!click && <p className="text-white text-[24px]">Home</p>}
         </div>
         <ul className="flex flex-col p-4 mt-10 gap-14">
           {dataSideBar.map((item) => (
@@ -83,9 +83,7 @@ const Home = () => {
             >
               <Link to={item.link} className="flex items-center gap-x-2">
                 {item.icon}
-                {!click && (
-                  <p className="text-white ">{item.title}</p>
-                )}
+                {!click && <p className="text-white ">{item.title}</p>}
               </Link>
             </li>
           ))}
@@ -111,7 +109,7 @@ const Home = () => {
 
       <button
         onClick={() => setClick(!click)}
-        className={`bg-emerald-500 text-white shadow-lg rounded-full p-2 ms-[-20px] mt-20 transition-all duration-300 ${
+        className={`bg-emerald-500 text-white shadow-lg rounded-full ms-[-20px] mt-20 transition-all duration-300 p-1 ${
           click && "transform rotate-180"
         }`}
       >
@@ -119,15 +117,14 @@ const Home = () => {
       </button>
 
       <div className="w-screen bg-no-repeat bg-cover bg-bg">
-        <h1 className="p-4 text-3xl text-center text-white">
-          List Users
-        </h1>
+        <h1 className="p-4 text-3xl text-center text-white">List Users</h1>
 
-        <div className="grid grid-cols-3 gap-3 p-3">
+        <div className="grid grid-cols-3 gap-3 p-3 group">
           {listUsers.map((item) => (
-            <div
+            <Link
               key={item.id}
-              className="flex flex-col w-4/5 p-4 mx-auto bg-gray-400 border border-gray-100 shadow-2xl rounded-xl backdrop-filter backdrop-blur-md bg-opacity-10"
+              className="flex flex-col w-4/5 p-4 mx-auto bg-gray-400 border border-gray-100 shadow-2xl rounded-xl backdrop-filter backdrop-blur-md bg-opacity-10 group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 duration-300"
+              to={`/users/${item.id}`}
             >
               <img
                 src={item.avatar}
@@ -145,7 +142,7 @@ const Home = () => {
                 Last Name: {item.last_name}
               </p>
               <p className="text-sm font-semibold">Email: {item.email}</p>
-            </div>
+            </Link>
           ))}
         </div>
 

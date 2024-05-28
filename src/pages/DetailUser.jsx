@@ -1,38 +1,43 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { IoMdArrowDroprightCircle } from "react-icons/io";
 import { PiSpinnerBallFill } from "react-icons/pi";
-import { useState, useEffect } from "react";
-import dataSideBar from "../component/dataSideBar";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { GrLogout } from "react-icons/gr";
+import dataSideBar from "../component/dataSideBar";
 
-const User = () => {
-  const navigate = useNavigate();
-  const [user, setUser] = useState({});
+const DetailUser = () => {
+  const param = useParams();
+
+  const [detailUser, setDetailUser] = useState({});
   const [click, setClick] = useState(false);
 
   const getUser = () => {
     axios
-      .get("https://reqres.in/api/users/2")
+      .get(`https://reqres.in/api/users/${param.id}`)
       .then((res) => {
-        console.log(res.data.data);
-        setUser(res.data.data);
+        // console.log(res.data.data)
+        const response = res.data.data;
+        setDetailUser(response);
       })
       .catch((err) => {
         console.log(err.response);
       });
   };
 
+  const token = localStorage.getItem("access_token");
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    setTimeout(() => {
+      navigate("/login");
+    }, 1000);
+  };
+
   useEffect(() => {
     getUser();
   }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("access_token");
-    navigate("/login");
-  };
 
   return (
     <div className="flex items-start">
@@ -45,9 +50,7 @@ const User = () => {
           <div className="bg-gradient-to-r from-emerald-400 to-emerald-600 text-emerald-200 rounded-lg p-[4px] items-center transition-all duration-300 w-[40px] h-[40px]">
             <PiSpinnerBallFill className="text-[34px] animate-spin" />{" "}
           </div>
-          {!click && (
-            <p className="text-white text-[24px] font-semibold">User</p>
-          )}
+          {!click && <p className="text-white text-[24px]">Detail User</p>}
         </div>
         <ul className="flex flex-col p-4 mt-10 gap-14">
           {dataSideBar.map((item) => (
@@ -57,9 +60,7 @@ const User = () => {
             >
               <Link to={item.link} className="flex items-center gap-x-2">
                 {item.icon}
-                {!click && (
-                  <p className="font-semibold text-white">{item.title}</p>
-                )}
+                {!click && <p className="text-white ">{item.title}</p>}
               </Link>
             </li>
           ))}
@@ -75,7 +76,7 @@ const User = () => {
           {click && (
             <button
               onClick={handleLogout}
-              className="p-2 text-white transition-all duration-300 "
+              className="p-2 text-white transition-all duration-300"
             >
               <GrLogout />
             </button>
@@ -95,26 +96,26 @@ const User = () => {
       <div className="w-screen h-screen bg-no-repeat bg-cover bg-bg">
         <h1 className="p-4 text-3xl text-center text-white">Detail User</h1>
         <div
-          key={user.id}
-          className="flex flex-col justify-center w-2/6 p-6 mx-auto leading-5 bg-gray-400 border border-gray-100 shadow-2xl rounded-xl backdrop-filter backdrop-blur-md bg-opacity-10 item-center"
+          key={detailUser.id}
+          className="flex flex-col justify-center w-2/6 p-6 mx-auto leading-5 bg-gray-400 border border-gray-100 shadow-2xl rounded-xl backdrop-filter backdrop-blur-md bg-opacity-10 item-center" 
         >
           <img
-            src={user.avatar}
-            alt={user.first_name}
+            src={detailUser.avatar}
+            alt={detailUser.first_name}
             className="self-center h-40 rounded-lg w-44"
           />
           <div className="self-center p-4">
             <p className="text-xl font-bold text-center">
-              {user.first_name} {user.last_name}
+              {detailUser.first_name} {detailUser.last_name}
             </p>
-            <p className="text-lg font-semibold text-center">ID: {user.id}</p>
+            <p className="text-lg font-semibold text-center">ID: {detailUser.id}</p>
             <p className="mb-2 text-lg font-semibold">
-              First Name: {user.first_name}
+              First Name: {detailUser.first_name}
             </p>
             <p className="mb-2 text-lg font-semibold">
-              Last Name: {user.last_name}
+              Last Name: {detailUser.last_name}
             </p>
-            <p className="text-lg font-semibold ">Email: {user.email}</p>
+            <p className="text-lg font-semibold ">Email: {detailUser.email}</p>
           </div>
         </div>
       </div>
@@ -122,4 +123,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default DetailUser;
