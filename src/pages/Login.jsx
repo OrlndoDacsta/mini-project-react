@@ -52,10 +52,11 @@ const Login = () => {
   };
 
   return (
-    <div className="content-center w-screen h-screen bg-emerald-900">
-      <div className="flex">
-        <div className="flex flex-col items-center justify-center gap-5 w-110">
-          <h1 className="mb-5 text-3xl font-bold text-white">Welcome</h1>
+    <div className="content-center bg-emerald-900 sm:h-screen">
+      <div className="flex max-sm:flex-col">
+        <div className="flex flex-col items-center justify-center gap-5 w-110 max-sm:w-full">
+          <h1 className="mb-5 text-3xl font-bold text-white max-sm:text-2xl max-sm:mb-0 max-sm:text-center max-sm:p-2">Welcome</h1>
+          <img className="h-64 sm:hidden" src={loginImg} alt="loginLogo" />
           {token && (
             <div className={close ? "hidden" : "flex"}>
               <div
@@ -162,7 +163,7 @@ const Login = () => {
             <div className="flex mb-5">
               <img src={mail} alt="mail" />
               <input
-                className="p-3 text-white transition-colors duration-300 ease-out delay-300 bg-transparent border-b w-96 focus:outline-none focus:border-yellow-500"
+                className="p-3 text-white transition-colors duration-300 ease-out delay-300 bg-transparent border-b w-96 focus:outline-none focus:border-yellow-500 max-sm:w-60"
                 onChange={handleEmailChange}
                 placeholder="Email"
               />
@@ -177,7 +178,7 @@ const Login = () => {
             <div className="flex">
               <img src={lock} alt="lock" />
               <input
-                className="p-3 text-white transition-colors duration-300 ease-linear delay-300 bg-transparent border-b w-96 focus:outline-none focus:border-yellow-500"
+                className="p-3 text-white transition-colors duration-300 ease-linear delay-300 bg-transparent border-b w-96 focus:outline-none focus:border-yellow-500 max-sm:w-60"
                 onChange={handlePasswordChange}
                 placeholder="Password"
               />
@@ -195,7 +196,7 @@ const Login = () => {
               Login
             </button>
           </div>
-          <p className="text-white">
+          <p className="text-white max-sm:p-2">
             Don't have an account?{" "}
             <Link to="/register" className="text-yellow-500">
               Register
@@ -203,7 +204,7 @@ const Login = () => {
           </p>
         </div>
 
-        <img className="h-96" src={loginImg} alt="loginLogo" />
+        <img className="h-96 max-sm:hidden" src={loginImg} alt="loginLogo" />
       </div>
     </div>
   );
