@@ -181,6 +181,7 @@ const Login = () => {
                 className="p-3 text-white transition-colors duration-300 ease-linear delay-300 bg-transparent border-b w-96 focus:outline-none focus:border-yellow-500 max-sm:w-60"
                 onChange={handlePasswordChange}
                 placeholder="Password"
+                type="password"
               />
             </div>
 
