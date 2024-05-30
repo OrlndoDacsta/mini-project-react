@@ -13,10 +13,9 @@ const navItem = [
   {
     id: 2,
     icon: <FaUser className="text-xl text-white" />,
-    title: "Profile",
+    title: "User",
     link: "/user",
   },
-      
 ];
 
 export default navItem;

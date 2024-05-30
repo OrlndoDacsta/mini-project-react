@@ -136,15 +136,13 @@ const Home = () => {
       </button>
 
       <div className="w-screen h-full bg-no-repeat bg-cover bg-bg">
-        <h1 className="p-4 text-3xl text-center text-white ">
-          List Users
-        </h1>
+        <h1 className="p-4 text-3xl text-center text-white ">List Users</h1>
 
         <div className="grid grid-cols-3 gap-3 p-3 group max-sm:grid-cols-1">
           {listUsers.map((item) => (
             <Link
               key={item.id}
-              className="flex flex-col w-4/5 p-4 mx-auto bg-gray-400 border border-gray-100 shadow-2xl rounded-xl backdrop-filter backdrop-blur-md bg-opacity-10 group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 duration-300 max-sm:w-3/5"
+              className="flex flex-col w-4/5 p-4 mx-auto bg-gray-400 border border-gray-100 shadow-2xl rounded-xl backdrop-filter backdrop-blur-md bg-opacity-10 group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 duration-300 max-sm:w-3/5 bg-bg2 bg-center bg-no-repeat"
               to={`/users/${item.id}`}
               title="Detail User"
             >

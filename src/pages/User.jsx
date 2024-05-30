@@ -111,10 +111,10 @@ const User = () => {
       </button>
 
       <div className="w-screen h-screen bg-no-repeat bg-cover bg-bg">
-        <h1 className="p-4 text-3xl text-center text-white">Detail User</h1>
+        <h1 className="p-4 text-3xl text-center text-white">Single User</h1>
         <div
           key={user.id}
-          className="flex flex-col justify-center w-2/6 p-6 mx-auto leading-5 bg-gray-400 border border-gray-100 shadow-2xl rounded-xl backdrop-filter backdrop-blur-md bg-opacity-10 item-center max-sm:w-3/5"
+          className="flex flex-col justify-center w-2/6 p-6 mx-auto leading-5 bg-gray-400 bg-center bg-no-repeat border border-gray-100 shadow-2xl rounded-xl backdrop-filter backdrop-blur-md bg-opacity-10 item-center max-sm:w-3/5 bg-bg2"
         >
           <img
             src={user.avatar}
