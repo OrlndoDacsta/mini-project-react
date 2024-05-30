@@ -20,7 +20,7 @@ const Register = () => {
   };
 
   const handlePasswordChange = (event) => {
-    console.log(event);
+    // console.log(event);
     setPassword(event.target.value);
   };
 
@@ -37,7 +37,7 @@ const Register = () => {
     axios
       .post("https://reqres.in/api/register", payload)
       .then((res) => {
-        console.log(res.data.token);
+        // console.log(res.data.token);
         setToken(res.data.token);
 
         setTimeout(() => {

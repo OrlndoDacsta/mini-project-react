@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   const handlePasswordChange = (event) => {
-    console.log(event);
+    // console.log(event);
     setPassword(event.target.value);
   };
 
@@ -55,7 +55,9 @@ const Login = () => {
     <div className="content-center bg-emerald-900 sm:h-screen">
       <div className="flex max-sm:flex-col">
         <div className="flex flex-col items-center justify-center gap-5 w-110 max-sm:w-full">
-          <h1 className="mb-5 text-3xl font-bold text-white max-sm:text-2xl max-sm:mb-0 max-sm:text-center max-sm:p-2">Welcome</h1>
+          <h1 className="mb-5 text-3xl font-bold text-white max-sm:text-2xl max-sm:mb-0 max-sm:text-center max-sm:p-2">
+            Welcome
+          </h1>
           <img className="h-64 sm:hidden" src={loginImg} alt="loginLogo" />
           {token && (
             <div className={close ? "hidden" : "flex"}>

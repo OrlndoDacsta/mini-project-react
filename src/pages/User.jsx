@@ -17,7 +17,7 @@ const User = () => {
     axios
       .get("https://reqres.in/api/users/2")
       .then((res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         setUser(res.data.data);
       })
       .catch((err) => {
